@@ -56,4 +56,17 @@ router.post("/projects", (req, res) => {
     });
 });
 
+router.get("/projects/:id/tasks", (req, res) => {
+  const id = req.params.id;
+
+  Helpers.findTasks(id)
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json("Unable to retrieve at the moment");
+    });
+});
+
 module.exports = router;
