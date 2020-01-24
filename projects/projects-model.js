@@ -10,6 +10,13 @@ function find(table) {
     }
 }
 
+function insert(table, data) {
+    if (table === 'resources') {
+        return db('resources').insert(data);
+    }
+}
+
 module.exports = {
-    find
+    find,
+    insert
 }
