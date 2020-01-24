@@ -69,4 +69,19 @@ router.get("/projects/:id/tasks", (req, res) => {
     });
 });
 
+router.post("/projects/:id/tasks", (req, res) => {
+  const body = req.body;
+
+  Helpers.insert("tasks", body)
+    .then(data => {
+      if (data) {
+        res.status(200).json("New task added successfully");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json("Unable to add new task at the moment");
+    });
+});
+
 module.exports = router;
